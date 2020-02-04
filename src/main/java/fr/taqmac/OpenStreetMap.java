@@ -13,7 +13,7 @@ public class OpenStreetMap {
 
     @GetMapping(value = "/map/search/{localisation}")
     private String search(@PathVariable String localisation) throws IOException {
-        String detailLocalisation = HTTPService.call("https://nominatim.openstreetmap.org/search/" + localisation + "?format=json");
+        String detailLocalisation = HTTPService.call("https://nominatim.openstreetmap.org/search/" + localisation + "?format=json", HTTPService.GET);
         return detailLocalisation;
     }
 
