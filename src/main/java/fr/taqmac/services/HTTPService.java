@@ -1,4 +1,4 @@
-package fr.taqmac.services;
+package main.java.fr.taqmac.services;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -74,7 +74,7 @@ public class HTTPService {
 			byte[] postData = requestArgs.getBytes(StandardCharsets.UTF_8);
 			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 			
-			try (var wr = new DataOutputStream(con.getOutputStream())) {
+			try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
                 wr.write(postData);
             }
 		}
