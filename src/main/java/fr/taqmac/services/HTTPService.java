@@ -1,4 +1,4 @@
-package main.java.fr.taqmac.services;
+package fr.taqmac.services;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
