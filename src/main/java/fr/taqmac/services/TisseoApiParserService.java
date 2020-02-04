@@ -1,4 +1,4 @@
-package Services;
+package fr.taqmac.services;
 
 public class TisseoApiParserService {
 
