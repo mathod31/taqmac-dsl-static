@@ -1,4 +1,4 @@
-package fr.taqmac.datamodel;
+package main.java.fr.taqmac.datamodel;
 
 public enum ModeTransport {
 	CAR,WALK,BIKE,BUS,SUBWAY,TRAMWAY
