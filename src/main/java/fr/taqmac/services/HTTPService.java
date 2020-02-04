@@ -1,4 +1,4 @@
-package fr.taqmac;
+package fr.taqmac.services;
 
 import java.io.BufferedReader;
 import java.io.IOException;
