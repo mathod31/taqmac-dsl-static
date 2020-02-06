@@ -1,4 +1,4 @@
-package main.java.fr.taqmac.datamodel;
+package fr.taqmac.datamodel;
 
 public class Position {
     Double x,y;

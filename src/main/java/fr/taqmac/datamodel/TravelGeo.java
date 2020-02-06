@@ -1,9 +1,9 @@
-package main.java.fr.taqmac.datamodel;
+package fr.taqmac.datamodel;
 
 public class TravelGeo {
 	
-	StartPoint start;
-	EndPoint end;
+	private StartPoint start;
+	private EndPoint end;
 	
 	public TravelGeo(StartPoint s, EndPoint e) {
 		start = s;

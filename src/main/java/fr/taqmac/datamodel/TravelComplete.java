@@ -1,4 +1,4 @@
-package main.java.fr.taqmac.datamodel;
+package fr.taqmac.datamodel;
 
 import java.util.ArrayList;
 import java.util.List;

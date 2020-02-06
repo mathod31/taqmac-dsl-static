@@ -1,4 +1,4 @@
-package main.java.fr.taqmac.parser;
+package fr.taqmac.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import main.java.fr.taqmac.datamodel.*;
+import fr.taqmac.datamodel.*;
 
 public class TisseoParser {
     public ArrayList<Point> getPlaces(String json) throws IOException {
