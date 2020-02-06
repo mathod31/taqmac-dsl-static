@@ -1,5 +1,9 @@
 package fr.taqmac.services;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -73,7 +77,7 @@ public class HTTPService {
 			con.setDoOutput(true); // Précise que l'on ajoute des arguments dans la requête (dans le body)
 			byte[] postData = requestArgs.getBytes(StandardCharsets.UTF_8);
 			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-			
+
 			try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
                 wr.write(postData);
             }
@@ -101,4 +105,11 @@ public class HTTPService {
 		
 		return content.toString();
 	}
+
+	public static ResponseEntity<String> createResponse(String content){
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Access-Control-Allow-Origin","*");
+		return new ResponseEntity<>(content,headers, HttpStatus.OK);
+	}
+
 }
