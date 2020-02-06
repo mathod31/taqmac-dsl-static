@@ -11,34 +11,43 @@ import java.util.LinkedHashMap;
 import fr.taqmac.datamodel.*;
 
 public class TisseoParser {
+
+    /**
+     * Returns all places result of the search of a location in an Tisseo API call result.
+     *
+     * @param json Tisseo API call result
+     * @return places result of the location search
+     * @throws IOException .
+     */
     public ArrayList<Point> getPlaces(String json) throws IOException {
-        HashMap value = new ObjectMapper().readValue(json, HashMap.class);
-        //HashMap placesList = new ObjectMapper().readValue(value.get("placesList"), HashMap.class);
-        LinkedHashMap value2 = (LinkedHashMap) value.get("placesList");
-        ArrayList value3 = (ArrayList) value2.get("place");
-        ArrayList<Point> result = new ArrayList<>();
-        for (Object o : value3) {
-            LinkedHashMap value4 = (LinkedHashMap) o;
-            String pos = value4.get("key").toString();
-            String n = value4.get("label").toString();
-            Double x = (Double)value4.get("x");
-            Double y = (Double)value4.get("y");
-            result.add(new Point(pos,n,x,y));
+        HashMap result = new ObjectMapper().readValue(json, HashMap.class);
+        //HashMap placesList = new ObjectMapper().readValue(result.get("placesList"), HashMap.class);
+        LinkedHashMap placesList = (LinkedHashMap) result.get("placesList");
+        ArrayList places = (ArrayList) placesList.get("place");
+        ArrayList<Point> results = new ArrayList<>();
+        for (Object o : places) {
+            LinkedHashMap place = (LinkedHashMap) o;
+            String pos = place.get("key").toString();
+            String n = place.get("label").toString();
+            Double x = (Double)place.get("x");
+            Double y = (Double)place.get("y");
+            results.add(new Point(pos,n,x,y));
         }
-        return result;
+        return results;
     }
+
     public ArrayList<String> getJourneysText(String json) throws IOException {
-        HashMap value = new ObjectMapper().readValue(json, HashMap.class);
-        LinkedHashMap value2 = (LinkedHashMap) value.get("routePlannerResult");
-        ArrayList value3 = (ArrayList) value2.get("journeys");
+        HashMap result = new ObjectMapper().readValue(json, HashMap.class);
+        LinkedHashMap routePlannerResult = (LinkedHashMap) result.get("routePlannerResult");
+        ArrayList journeys = (ArrayList) routePlannerResult.get("journeys");
         ArrayList<TravelComplete> listTravel = new ArrayList<>();
-        for(int j = 0; j <value3.size()-1;j++) {
-            LinkedHashMap value4 = (LinkedHashMap) value3.get(j);
+        for (int j = 0; j < journeys.size() - 1; j++) {
+            LinkedHashMap value = (LinkedHashMap) journeys.get(j);
             TravelComplete fulltrav = new TravelComplete();
-            LinkedHashMap value5 = (LinkedHashMap) value4.get("journey");
-            ArrayList value6 = (ArrayList) value5.get("chunks");
-            for(int i = 0; i <value6.size()-1;i=i+2){
-                LinkedHashMap departPointLog = (LinkedHashMap) value6.get(i);
+            LinkedHashMap journey = (LinkedHashMap) value.get("journey");
+            ArrayList chunks = (ArrayList) journey.get("chunks");
+            for (int i = 0; i < chunks.size() - 1; i += 2) {
+                LinkedHashMap departPointLog = (LinkedHashMap) chunks.get(i);
                 LinkedHashMap departPointLogGeo = (LinkedHashMap) departPointLog.get("stop");
                 LinkedHashMap departPointLogGeoInfo = (LinkedHashMap) departPointLogGeo.get("connectionPlace");
 
@@ -48,7 +57,7 @@ public class TisseoParser {
                 Double yD = Double.parseDouble(departPointLogGeoInfo.get("y").toString());
                 StartPoint departPoint = new StartPoint(posD,nD,xD,yD);
 
-                LinkedHashMap endPointLog = (LinkedHashMap) value6.get(i+2);
+                LinkedHashMap endPointLog = (LinkedHashMap) chunks.get(i+2);
                 LinkedHashMap endPointLogGeo = (LinkedHashMap) endPointLog.get("stop");
                 LinkedHashMap endPointLogGeoInfo = (LinkedHashMap) endPointLogGeo.get("connectionPlace");
 
@@ -60,7 +69,7 @@ public class TisseoParser {
 
                 TravelGeo travG = new TravelGeo(departPoint,endPoint);
 
-                LinkedHashMap trans = (LinkedHashMap) value6.get(i+1);
+                LinkedHashMap trans = (LinkedHashMap) chunks.get(i+1);
                 LinkedHashMap transInfo = (LinkedHashMap) trans.get("service");
                 LinkedHashMap transInfoText = (LinkedHashMap) transInfo.get("text");
                 String des = (String) transInfoText.get("text");
