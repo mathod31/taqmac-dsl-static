@@ -24,10 +24,10 @@ public class HTTPService {
 	 * Appel API sans argument
 	 * @param urlCalled : Adresse URL (HTTP)
 	 * @param requestMethod : Type de methode (HTTPService.POST, PUT, DELETE, GET)
-	 * @return String : Réponse de la requête
+	 * @return TupleHttpUtils : Réponse de la requête body, code de retour
 	 * @throws IOException
 	 */
-	public static String call(String urlCalled, String requestMethod) throws IOException {
+	public static TupleHttpUtils call(String urlCalled, String requestMethod) throws IOException {
 	
 		return call(urlCalled, requestMethod, "");
 	}
@@ -37,10 +37,10 @@ public class HTTPService {
 	 * @param urlCalled : Adresse URL (HTTP)
 	 * @param requestMethod : Type de méthode (HTTPService.POST, PUT, DELETE, GET)
 	 * @param requestArgs : Tableau de String (ex : [a=alpha,b=beta])
-	 * @return String : Réponse de la requête
+	 * @return Réponse de la requête body, code de retour
 	 * @throws IOException
 	 */
-	public static String call(String urlCalled, String requestMethod, String[] requestArgs) throws IOException {
+	public static TupleHttpUtils call(String urlCalled, String requestMethod, String[] requestArgs) throws IOException {
 		
 		String argString = "";
 		for (int i=0; i<requestArgs.length; i++) {
@@ -57,10 +57,10 @@ public class HTTPService {
 	 * @param urlCalled : Adresse URL (HTTP)
 	 * @param requestMethod (HTTPService.POST, PUT, DELETE, GET)
 	 * @param requestArgs : String (ex : a=apha&b=beta)
-	 * @return String : Réponse de la requête
+	 * @return Réponse de la requête body, code de retour
 	 * @throws IOException
-	 */
-	public static String call(String urlCalled, String requestMethod, String requestArgs) throws IOException {
+	 */	
+	public static TupleHttpUtils call(String urlCalled, String requestMethod, String requestArgs) throws IOException {
         
         URL url = new URL(urlCalled); // URL à appeller
 		HttpURLConnection con = (HttpURLConnection) url.openConnection(); // Ouverture connection
@@ -103,7 +103,7 @@ public class HTTPService {
 		// Fermeture de la connection
 		con.disconnect();
 		
-		return content.toString();
+		return new TupleHttpUtils(content.toString(), status);
 	}
 
 	public static ResponseEntity<String> createResponse(String content){
