@@ -2,6 +2,7 @@ package fr.taqmac.services;
 
 
 import fr.taqmac.services.HTTPService;
+import fr.taqmac.utils.ResponseHttpUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -20,15 +21,18 @@ public class OpenStreetMapService {
 
     @GetMapping(value = "/map/search/{localisation}")
     private ResponseEntity<String> search(@PathVariable String localisation) throws IOException {
-        String detailLocalisation = HTTPService.call(getBaseURL + "/search/" + localisation + "?format=json", HTTPService.GET);
-        return HTTPService.createResponse(detailLocalisation);
-
+        ResponseHttpUtils response = HTTPService.call(getBaseURL + "/search/" + localisation + "?format=json", HTTPService.GET);
+        String detailLocalisation = response.getResultContent();
+        if (response.getResultCode() == HttpStatus.OK.value())
+            return HTTPService.createResponse(detailLocalisation, HttpStatus.OK);
+        else
+            return HTTPService.createResponse("", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping(value = "/getArrival")
     private ResponseEntity<String> getArrival() throws IOException {
         String arrival = "Altran";
-        return HTTPService.createResponse(arrival);
+        return HTTPService.createResponse(arrival,HttpStatus.OK);
     }
 
 

@@ -4,12 +4,12 @@ package fr.taqmac.utils;
  * Classe Tuple String,Int
  *
  */
-public class TupleHttpUtils {
+public class ResponseHttpUtils {
 	
 	private int resultCode;
 	private String resultContent;
 	
-	public TupleHttpUtils(String content, int code) {
+	public ResponseHttpUtils(String content, int code) {
 		this.resultContent = content;
 		this.resultCode = code;
 	}
