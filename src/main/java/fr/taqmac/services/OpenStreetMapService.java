@@ -1,4 +1,4 @@
-package fr.taqmac;
+package fr.taqmac.services;
 
 
 import fr.taqmac.services.HTTPService;
@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-public class OpenStreetMap {
+public class OpenStreetMapService {
+
+    public static final String getBaseURL = "https://nominatim.openstreetmap.org/";
+
 
     @GetMapping(value = "/map/search/{localisation}")
     private ResponseEntity<String> search(@PathVariable String localisation) throws IOException {
-        String detailLocalisation = HTTPService.call("https://nominatim.openstreetmap.org/search/" + localisation + "?format=json", HTTPService.GET);
+        String detailLocalisation = HTTPService.call(getBaseURL + "/search/" + localisation + "?format=json", HTTPService.GET);
         return HTTPService.createResponse(detailLocalisation);
 
     }
