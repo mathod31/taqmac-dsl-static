@@ -64,7 +64,6 @@ public class HTTPService {
 		// Configuration de la requête
 		con.setRequestMethod(requestMethod);
 		con.setRequestProperty("user-Agent", "Java client");
-		con.setRequestProperty("Access-Control-Allow-Origin","*");
 		con.setConnectTimeout(5000);
 		con.setReadTimeout(5000);
 		con.setInstanceFollowRedirects(false); // Permet d'accepter les redirections s'il y en a
