@@ -6,7 +6,11 @@ import java.util.List;
 public class TravelComplete {
 	List<Travel> listTravel;
 
-	TravelComplete(){
+	public TravelComplete(){
 		listTravel = new ArrayList<Travel>();
+	}
+
+	public void addTravel(Travel trav){
+		listTravel.add(trav);
 	}
 }
