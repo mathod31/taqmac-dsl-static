@@ -1,5 +1,6 @@
 package fr.taqmac.services;
 
+import fr.taqmac.utils.ResponseHttpUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+
 
 public class HTTPService {
 
@@ -27,7 +29,7 @@ public class HTTPService {
 	 * @return TupleHttpUtils : Réponse de la requête body, code de retour
 	 * @throws IOException
 	 */
-	public static TupleHttpUtils call(String urlCalled, String requestMethod) throws IOException {
+	public static ResponseHttpUtils call(String urlCalled, String requestMethod) throws IOException {
 	
 		return call(urlCalled, requestMethod, "");
 	}
@@ -40,7 +42,7 @@ public class HTTPService {
 	 * @return Réponse de la requête body, code de retour
 	 * @throws IOException
 	 */
-	public static TupleHttpUtils call(String urlCalled, String requestMethod, String[] requestArgs) throws IOException {
+	public static ResponseHttpUtils call(String urlCalled, String requestMethod, String[] requestArgs) throws IOException {
 		
 		String argString = "";
 		for (int i=0; i<requestArgs.length; i++) {
@@ -60,7 +62,7 @@ public class HTTPService {
 	 * @return Réponse de la requête body, code de retour
 	 * @throws IOException
 	 */	
-	public static TupleHttpUtils call(String urlCalled, String requestMethod, String requestArgs) throws IOException {
+	public static ResponseHttpUtils call(String urlCalled, String requestMethod, String requestArgs) throws IOException {
         
         URL url = new URL(urlCalled); // URL à appeller
 		HttpURLConnection con = (HttpURLConnection) url.openConnection(); // Ouverture connection
@@ -103,13 +105,13 @@ public class HTTPService {
 		// Fermeture de la connection
 		con.disconnect();
 		
-		return new TupleHttpUtils(content.toString(), status);
+		return new ResponseHttpUtils(content.toString(), status);
 	}
 
-	public static ResponseEntity<String> createResponse(String content){
+	public static ResponseEntity<String> createResponse(String content, HttpStatus status){
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Access-Control-Allow-Origin","*");
-		return new ResponseEntity<>(content,headers, HttpStatus.OK);
+		return new ResponseEntity<>(content,headers, status);
 	}
 
 }
