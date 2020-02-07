@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 
@@ -63,7 +64,8 @@ public class HTTPService {
 	 * @throws IOException
 	 */	
 	public static ResponseHttpUtils call(String urlCalled, String requestMethod, String requestArgs) throws IOException {
-        
+
+		urlCalled = URLEncoder.encode(urlCalled, "UTF-8");
         URL url = new URL(urlCalled); // URL à appeller
 		HttpURLConnection con = (HttpURLConnection) url.openConnection(); // Ouverture connection
 		
