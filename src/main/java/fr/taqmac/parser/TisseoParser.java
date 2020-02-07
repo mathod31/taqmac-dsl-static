@@ -1,6 +1,7 @@
 package main.java.fr.taqmac.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.taqmac.datamodel.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import main.java.fr.taqmac.datamodel.*;
 
 public class TisseoParser {
 

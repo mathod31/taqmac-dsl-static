@@ -1,4 +1,4 @@
-package main.java.fr.taqmac.datamodel;
+package fr.taqmac.datamodel;
 
 import fr.taqmac.datamodel.TravelGeo;
 import fr.taqmac.datamodel.TransportChoice;
