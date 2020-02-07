@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @RestController
 public class OpenStreetMapService {
@@ -19,6 +21,9 @@ public class OpenStreetMapService {
 
     @GetMapping(value = "/map/search/{localisation}")
     private ResponseEntity<String> search(@PathVariable String localisation) throws IOException {
+        localisation = URLEncoder.encode(localisation, StandardCharsets.UTF_8.toString());
+        System.out.println(localisation);
+
         ResponseHttpUtils response = HTTPService.call(getBaseURL + "/search/" + localisation + "?format=json", HTTPService.GET);
         String detailLocalisation = response.getResultContent();
         if (response.getResultCode() == HttpStatus.OK.value())
