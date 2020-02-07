@@ -30,6 +30,7 @@ public class OpenStreetMapService {
             return HTTPService.createResponse("", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+
     @GetMapping(value = "/getArrival")
     private ResponseEntity<String> getArrival() throws IOException {
         String arrival = "Altran";

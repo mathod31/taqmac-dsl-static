@@ -1,4 +1,4 @@
-package main.java.fr.taqmac.parser;
+package fr.taqmac.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.taqmac.datamodel.*;
@@ -19,7 +19,7 @@ public class TisseoParser {
      * @return places result of the location search
      * @throws IOException .
      */
-    public ArrayList<Point> getPlaces(String json) throws IOException {
+    public static ArrayList<Point> getPlaces(String json) throws IOException {
         HashMap result = new ObjectMapper().readValue(json, HashMap.class);
         //HashMap placesList = new ObjectMapper().readValue(result.get("placesList"), HashMap.class);
         LinkedHashMap placesList = (LinkedHashMap) result.get("placesList");
@@ -35,7 +35,7 @@ public class TisseoParser {
         }
         return results;
     }
-    public ArrayList<TravelComplete> getJourneysText(String json) throws IOException {
+    public static ArrayList<TravelComplete> getJourneysText(String json) throws IOException {
         HashMap result = new ObjectMapper().readValue(json, HashMap.class);
         LinkedHashMap routePlannerResult = (LinkedHashMap) result.get("routePlannerResult");
         ArrayList journeys = (ArrayList) routePlannerResult.get("journeys");
