@@ -1,4 +1,4 @@
-package main.java.fr.taqmac.parser;
+package fr.taqmac.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.taqmac.datamodel.*;
