@@ -65,6 +65,9 @@ public class HTTPService {
 	 */	
 	public static ResponseHttpUtils call(String urlCalled, String requestMethod, String requestArgs) throws IOException {
 
+
+		urlCalled = urlCalled.replace(" ", "%20");
+
         URL url = new URL(urlCalled); // URL à appeller
 		HttpURLConnection con = (HttpURLConnection) url.openConnection(); // Ouverture connection
 		
