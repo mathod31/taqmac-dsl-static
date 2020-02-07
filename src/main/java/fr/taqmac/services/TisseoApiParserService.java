@@ -1,4 +1,4 @@
-package main.java.fr.taqmac.services;
+package fr.taqmac.services;
 
 import org.springframework.web.bind.annotation.RestController;
 

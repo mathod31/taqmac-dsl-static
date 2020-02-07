@@ -1,4 +1,4 @@
-package main.java.fr.taqmac.services;
+package fr.taqmac.services;
 
 import fr.taqmac.utils.ResponseHttpUtils;
 import org.springframework.http.HttpHeaders;

@@ -1,4 +1,4 @@
-package main.java.fr.taqmac.utils;
+package fr.taqmac.utils;
 
 /**
  * Classe Tuple String,Int
