@@ -1,4 +1,6 @@
-package fr.taqmac.datamodel;
+package main.java.fr.taqmac.datamodel;
+
+import fr.taqmac.datamodel.ModeTransport;
 
 public class TransportChoice {
 

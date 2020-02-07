@@ -1,4 +1,4 @@
-package fr.taqmac.datamodel;
+package main.java.fr.taqmac.datamodel;
 
 public class Point {
 	Position coordonees;

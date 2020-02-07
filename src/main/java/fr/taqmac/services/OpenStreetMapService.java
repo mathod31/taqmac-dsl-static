@@ -1,7 +1,5 @@
-package fr.taqmac.services;
+package main.java.fr.taqmac.services;
 
-
-import fr.taqmac.services.HTTPService;
 import fr.taqmac.utils.ResponseHttpUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
