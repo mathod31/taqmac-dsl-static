@@ -34,7 +34,7 @@ public class TisseoApiParserService {
 											  @PathVariable String localisationEnd)
 			throws IOException {
 		ResponseHttpUtils response = HTTPService.call(getBaseURL + "/journeys.json?departurePlace=" + localisationStart
-				+ "&arrivalPlace=" + localisationEnd + "&key=" + getKey, HTTPService.GET);
+				+ "&arrivalPlace=" + localisationEnd + "&displayWording=1&key=" + getKey, HTTPService.GET);
 		String journeys = response.getResultContent();
 
 		System.out.printf(TisseoParser.getJourneysText(journeys).toString());

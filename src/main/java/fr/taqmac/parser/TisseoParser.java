@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-
 public class TisseoParser {
 
     /**
@@ -77,7 +76,7 @@ public class TisseoParser {
                             travG = new TravelGeo(departPoint, endPoint);
                             if(i==0) {
                                 LinkedHashMap departPointLogGeoText = (LinkedHashMap) departPointLogGeo.get("text");
-                                des = des + (String) departPointLogGeoText.get("text").toString();
+                                des = des + departPointLogGeoText.get("text").toString();
                             }
                             LinkedHashMap trans = (LinkedHashMap) chunks.get(i + 1);
                             LinkedHashMap transInfo = (LinkedHashMap) trans.get("service");
@@ -85,7 +84,7 @@ public class TisseoParser {
                             des = des + (String) transInfoText.get("text");
 
                             LinkedHashMap endPointLogGeoText = (LinkedHashMap) endPointLogGeo.get("text");
-                            des = des + (String) endPointLogGeoText.get("text").toString();
+                            des = des + endPointLogGeoText.get("text").toString();
 
                             LinkedHashMap transInfoDesStop = (LinkedHashMap) transInfo.get("destinationStop");
                             LinkedHashMap transInfoDesStopLine = (LinkedHashMap) transInfoDesStop.get("line");
