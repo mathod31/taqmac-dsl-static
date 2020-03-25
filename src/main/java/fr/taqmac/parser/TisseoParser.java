@@ -20,7 +20,6 @@ public class TisseoParser {
      */
     public static ArrayList<Point> getPlaces(String json) throws IOException {
         HashMap result = new ObjectMapper().readValue(json, HashMap.class);
-        //HashMap placesList = new ObjectMapper().readValue(result.get("placesList"), HashMap.class);
         LinkedHashMap placesList = (LinkedHashMap) result.get("placesList");
         ArrayList places = (ArrayList) placesList.get("place");
         ArrayList<Point> results = new ArrayList<>();
@@ -45,7 +44,6 @@ public class TisseoParser {
             LinkedHashMap journey = (LinkedHashMap) value.get("journey");
             ArrayList chunks = (ArrayList) journey.get("chunks");
             for (int i = 0; i < chunks.size(); i++) {
-
                 LinkedHashMap departPointLog = (LinkedHashMap) chunks.get(i);
                 ModeTransport modeTransport;
                 String des = "";
